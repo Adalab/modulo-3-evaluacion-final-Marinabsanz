@@ -23,8 +23,10 @@ console.table (personajesData)
 
   return (
     <>
+
+    <form>   
     <h1>Hola</h1>
-   
+    </form>
 </>
   );
 
