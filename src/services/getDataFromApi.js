@@ -3,7 +3,7 @@ const getDataFromApi = () => {
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const pepino = data.results.map((info) => {
+      const eachPerson = data.results.map((info) => {
         return {
           id: info.id,
           name: info.name,
@@ -15,7 +15,8 @@ const getDataFromApi = () => {
           episode: info.episode.length,
         };
       });
-      return pepino;
+      console.table(eachPerson)
+      return eachPerson;
     });
 
  
