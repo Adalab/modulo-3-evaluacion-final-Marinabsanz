@@ -9,19 +9,19 @@ const CardPerson = (props) => {
 
   return (
     <Link className= 'linkclass' to= { `/CardPerson/${id}`}>
+      <div className= 'cardPerson-container'>   
       <article>
+      <h4> {name} </h4>
       <img className="img"
        src={image} 
        alt={`foto de ${image}`}
         />
-  
-      <h4> {name} </h4>
       <p> {species}</p>
-     <p> {gender}</p>
-     
-      
+      <p> {gender}</p>
     </article>
-     </Link>
+    </div>
+
+     </Link> 
   );
 };
 
