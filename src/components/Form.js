@@ -1,24 +1,20 @@
-import React from 'react';
-import getDataFromApi from "../services/getDataFromApi";
+import React  from 'react';
+
+import List from './List';
+
+ const Form= (props) => {
 
 
-const Form= (props) => {
-//crear state en el form
-// const [personajes, setPersonajes] = useState();
+const submitPj = (e) => {
+  e.preventDefault();
+}
 
-// useEffect(() => {
-//   getDataFromApi().then((personajesData) => {
-//     setPersonajes(personajesData);
-
-//     // console.table (personajesData)
-//   });
-// }, []);
-
-    return(
+    return (
     
     <>
-      <h2> Formulario </h2>
-      <form className="">
+      <form className=""
+      onSubmit= {submitPj}
+      >
       <fieldset className="">
         <legend> Busca a tu personaje</legend>
       </fieldset>
@@ -29,6 +25,8 @@ const Form= (props) => {
             className=""
             type="text"
             placeholder="Busca a tu personaje"
+            // onChange= {handleChange}
+
           />
         </div>
         <div className="">
@@ -48,11 +46,18 @@ const Form= (props) => {
           />
           </div>
           </form>
-          </>
 
-    )
+   <div>  
+     <h4> Tus resultados</h4>
+   
+
+   </div>
+
+   </>
+    
+    );
     
     }
     
-
+  
     export default Form;

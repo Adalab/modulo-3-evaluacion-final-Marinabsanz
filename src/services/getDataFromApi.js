@@ -3,20 +3,21 @@ const getDataFromApi = () => {
   return fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const eachPerson = data.results.map((info) => {
+      const eachPersonData = data.results.map((info) => {
         return {
           id: info.id,
           name: info.name,
           species: info.species,
           status: info.status,
-          photo: info.image,
+          gender:info.gender,
+          image: info.image,
           origin: info.origin.name,
           origin2:info.origin.url,
           episode: info.episode.length,
         };
       });
-      console.table(eachPerson)
-      return eachPerson;
+     
+      return eachPersonData
     });
 
  
