@@ -2,20 +2,18 @@
 
 import React from 'react';
 
-const ResetBtn= () => {
+const ResetBtn= (props) => {
 
     return(
     
-
-        <div className="classBtn-Container">
-        <input type="submit" className="classBtn" value="Borrar búsqueda" />
-      </div>
-
-
+        <button className="classBtn-Container classBtn" 
+        onClick={props.resetBtn}>
+          <i className="fas fa-trash"></i> Borrar Búsqueda
+        </button>
     )
+   
     
     }
-    
     
     
     export default ResetBtn;

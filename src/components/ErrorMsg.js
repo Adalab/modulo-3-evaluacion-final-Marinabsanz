@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const ErrorMsg = () => {
+const ErrorMsg = (props) => {
 
  return   ( 
-    <p> error!!!!Busca de nuevo</p>
+    <p> error!!!!</p>
   
 
     )

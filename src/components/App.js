@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from "react";
-
 import { Route, Switch } from "react-router-dom";
+//services
 import getDataFromApi from "../services/getDataFromApi";
 import ls from "../services/localStorage";
-
 ////Components///
-
 import Header from './Header';
 import MoreInfo from './MoreInfo';
-
 import FormFilter from "./FormFilter";
 import List from "./List";
 import "../styles/App.scss";
 
-
-
+import CDetailBis from './CDetailBis';
 
 //prueba mensaje de error aqui
 import ErrorMsg from './ErrorMsg';
 import ResetBtn from "./resetBtn";
 
 const App = () => {
-  /////////ESTADO
-  const [personajes, setPersonajes] = useState(ls.get("pj", []));
+  //estado inicial del array, OR se llena con lo guardado  OR comienza vacío 
+  const [personajes, setPersonajes] = useState(ls.get("personajes") || []);
 
   //para filtrar dspues crear constant   y guardar en el ls tmb
   const [filterNamePerson, setFilterNamePerson] = useState (ls.get ('filterNamePerson', ''));
@@ -44,47 +40,93 @@ const App = () => {
     ls.set("personajes", personajes);
   }, [personajes]);
 
-// filtros de Handle 
+// filtros de Handle  name 
 const handleFilter = (personajes) => {
   if (personajes.key === "name") {
     setFilterNamePerson(personajes.value);
   }
-};
+};  //aqui iria un else para las especies?
+
 
  // render filter
- const filteredPersonajes = personajes.filter((personaje) => {
-  return personaje.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+ const filteredPersonajes = personajes.filter((pj) => {
+  return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
 });
 
+// CREAR UNA RUTA PARA EL CDETAILS   y ver tarjetita por tarjetita
+ const renderCDetailBis = (propsId) => {
+   const waytoCDetailBis= parseInt(propsId.match.params.personajeId) ;
+   const foundCardPerson = personajes.find(
+     (personaje) => personaje.id === waytoCDetailBis
+     );
+   if (foundCardPerson) {
+     return <CDetailBis  pj= {foundCardPerson}/>
+   }else {
+    return <ErrorMsg/>;
+  } 
+
+ }
   
+ // Reset btn
+ const handleReset = () => {
+  //Vuelve al estado filternamePerson Vacío
+  setFilterNamePerson("");
+
+};
   return (
 
     //AQUI empezar con switch path y cosas raras
-
-
     <>
        <Header> </Header>
       <Switch> 
       <Route exact path="/">
       <main>
         <FormFilter
-        filterName={filterNamePerson} handleFilter={handleFilter}> </FormFilter>
-        <ResetBtn> </ResetBtn>
-        <List personajes={filteredPersonajes} />
+        filterName={filterNamePerson} 
+        handleFilter={handleFilter}
+  //meter máss filtros  
+        > 
+        </FormFilter>
+
+
+        <ResetBtn
+        resetBtn={handleReset}
+        > 
+        </ResetBtn>
+
+        <List 
+        personajes={filteredPersonajes}
+         />
+
+         
       </main>
       </Route>
-      <Route path="./CDetailBis/ " />
+
+      <Route 
+      path="/personaje/: personajeId "
+      render= {renderCDetailBis}
+      />
       </Switch>
 
-
-      <Switch> 
       <nav>
       <MoreInfo> </MoreInfo>
       </nav>
-      </Switch>
+  
+      {/* <Route>
+      index.js:1 Warning: React does not recognize the `computedMatch` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `computedmatch` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at nav
+    at Switch (http://localhost:3000/static/js/vendors~main.chunk.js:34633:29)
+    at App (http://localhost:3000/main.03875eccf59d72f2ba5b.hot-update.js:56:93)
+    at Router (http://localhost:3000/static/js/vendors~main.chunk.js:34066:30)
+    at HashRouter (http://localhost:3000/static/js/vendors~main.chunk.js:33731:35)
+            <ErrorMsg  />
+          </Route> */}
+     
+
       <footer
-      className="footer"
-      Marina Benítez Sánchez>
+      className="footer"> 
+    
+      Marina Benítez Sánchez
       </footer>
     </>
   );

@@ -11,11 +11,11 @@ const List = (props) => {
     );
   });
 
-//MIRAR QUE PASA EN LA FUNCION al comprobar
+//MIRAR QUÉ PASA EN LA FUNCION al comprobar. NO va, 
   const renderPersonaje = () => {
     console.log(props.personajes.length);
     if (props.personajes.length === 0) {
-      <ErrorMsg> </ErrorMsg>;
+      <p> Busca de nuevo</p>
     } else {
       <ul className="listPersons"> {pj}</ul>;
     }

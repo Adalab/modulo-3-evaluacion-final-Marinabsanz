@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import PropTypes from "prop-types";
 
 const CardPerson = (props) => {
   const { name, species, gender, status, image , origin, id} = props.personajes;
 
-  <li key = {id} className= ''> </li>
+  <li key = {id} > </li>
 
 
   return (
-    <Link className= 'linkclass' to= { `/CardPerson/${id}`}>
+    <Link to={`/CardPerson/${id}`}>
       <div className= 'cardPerson-container'>   
       <article>
       <h4> {name} </h4>
@@ -26,3 +27,16 @@ const CardPerson = (props) => {
 };
 
 export default CardPerson;
+
+
+//PROBANDO LOS PROTOS 
+
+CardPerson.propTypes  = {
+CardPerson: PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  gender: PropTypes.string,
+  species: PropTypes.string,
+  image: PropTypes.string,
+}),
+};
