@@ -3,11 +3,9 @@ const Person= () => {
 
     return(
     
-    
-      <p> Personajee </p>
+      <p> Personaje detalles </p>
     
     )
-    
     
     }
     

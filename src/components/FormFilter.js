@@ -1,68 +1,55 @@
-import React  from 'react';
+import React from "react";
 
-import List from './List';
+import List from "./List";
 
- const Form= (props) => {
+const FormFilter = (props) => {
+  const handleChange = (event) => {
+    props.handleFilter({
+      value: event.target.value,
+      key: "name",
+    });
 
-const handleChange = (event) =>{
-  console.log(event.target.value)
-//  props.handleFilter (event.target.value);
-}; 
+    console.log(event.target.value);
+  };
 
-const submitPj = (e) => {
-  e.preventDefault();
-}
+  const submitPj = (e) => {
+    e.preventDefault();
+  };
 
-    return (
-    
+  return (
     <>
-      <form className=""
-      onSubmit= {submitPj}
-      >
-     
-      <div className="">
+      <form className="" onSubmit={submitPj}>
         <div className="">
-          <input
-            name="nombre"
-            className=""
-            type="text"
-            id= ''
-            placeholder="Busca a tu personaje"
-            onChange= {handleChange}
-            // value= {props.filterName}
-
-          />
-        </div>
-        <div className="">
-          <select className="formControl" name="especie">
-            <option value=""> Selecciona la especie</option>
-          </select>
-        </div>
-      </div>
-
-      <div className= ''>
-        <input
-        type= 'submit'
-        className= 'classBtn'
-        value= 'Buscar personaje'
-
-          />
+          <div className="">
+            <input
+              name="nombre"
+              id="name"
+              className=""
+              type="text"
+              placeholder="Busca a tu personaje"
+              value={props.filterName}
+              onChange={handleChange}
+            />
           </div>
-          </form>
-          <fieldset className="claim">
-     ¡Aquí encontrarás más info de tus personajes favoritos!
+          <div className="">
+            <select className="formControl" name="especie">
+              <option value=""> Selecciona la especie</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="">
+          <input type="submit" className="classBtn" value="Buscar personaje" />
+        </div>
+      </form>
+      <fieldset className="claim">
+        ¡Aquí encontrarás más info de tus personajes favoritos!
       </fieldset>
-   <div>  
-     <h4> Tus resultados</h4>
-   
+      <div>
+        <h4> Tus resultados</h4>
+      </div>
+    </>
+  );
+};
 
-   </div>
-
-   </>
-    
-    );
-    
-    }
-    
-  
-    export default Form;
+export default FormFilter;

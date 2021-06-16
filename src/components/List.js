@@ -3,7 +3,7 @@ import CardPerson from './CardPerson';
 
 const List = (props) => {
 
-  const pjElements = props.personajes.map (personajes => {
+  const pj = props.personajes.map (personajes => {
    return (
       
       <CardPerson personajes= {personajes} />  
@@ -12,7 +12,7 @@ const List = (props) => {
 
    return (
 <section className=''>
-  <ul className='listPersons' > {pjElements}</ul>
+  <ul className='listPersons' > {pj}</ul>
 </section>
 
    );

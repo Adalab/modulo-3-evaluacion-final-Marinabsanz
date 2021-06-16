@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from "react";
-import CardPerson from "./CardPerson";
-import CardPersonDetail from "./CardPersonDetail";
 import FormFilter from "./FormFilter";
 import List from "./List";
 import "../styles/App.scss";
 import logo from "../images/rickandmorty-logo.png";
-import { Route, Switch } from "react-router-dom";
+// import { Route, Switch } from "react-router-dom";
 import getDataFromApi from "../services/getDataFromApi";
 import ls from "../services/localStoraje";
 
 const App = () => {
   /////////ESTADO
   const [personajes, setPersonajes] = useState(ls.get("pj", []));
-  console.log(personajes);
 
   //para filtrar dspues crear constant   y guardar en el ls tmb
-  // const [filterName, setFilterName] = useState (ls.get ('filterName', ''));
+  const [filterNamePerson, setFilterNamePerson] = useState (ls.get ('filterNamePerson', ''));
   //effects
-
   useEffect(() => {
-    if (personajes.length === 0) {
       getDataFromApi().then((personajesData) => {
         setPersonajes(personajesData);
-
-        console.table(personajesData);
       });
-    }
   }, []);
 
   useEffect(() => {
     ls.set("personajes", personajes);
   }, [personajes]);
 
+// filtros de Handle eventos
+const handleFilter = (personajes) => {
+  if (personajes.key === "name") {
+    setFilterNamePerson(personajes.value);
+  }
+};
+
+ // render fitler
+ const filteredPersonajes = personajes.filter((personajes) => {
+  return personajes.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+});
+
+  
   return (
     <>
       <header className="">
@@ -40,8 +45,9 @@ const App = () => {
         </h1>
       </header>
       <main>
-        <FormFilter> </FormFilter>
-        <List personajes={personajes} />
+        <FormFilter
+        filterName={filterNamePerson} handleFilter={handleFilter}> </FormFilter>
+        <List personajes={filteredPersonajes} />
       </main>
       <footer className="footer">Marina Benítez Sánchez</footer>
     </>
