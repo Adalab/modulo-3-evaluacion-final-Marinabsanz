@@ -1,7 +1,5 @@
 import React from "react";
 
-import List from "./List";
-
 const FormFilter = (props) => {
   const handleChange = (event) => {
     props.handleFilter({
