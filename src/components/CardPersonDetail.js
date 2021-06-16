@@ -11,17 +11,11 @@ return(
 
 </Link>
 
-
-
-
 </div>
-
 
 )
 
-
 }
-
 
 
 export default CardPersonDetail;
