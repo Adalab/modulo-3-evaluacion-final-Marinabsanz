@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 
 const CardPerson = (props) => {
-  const { name, species, gender, status, image , origin, id} = props.personajes;
+  const { name, species, gender,image , id} = props.personajes;
 
   <li key = {id} > </li>
 

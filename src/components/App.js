@@ -4,114 +4,100 @@ import { Route, Switch } from "react-router-dom";
 import getDataFromApi from "../services/getDataFromApi";
 import ls from "../services/localStorage";
 ////Components///
-import Header from './Header';
-import MoreInfo from './MoreInfo';
+import Header from "./Header";
+import MoreInfo from "./MoreInfo";
 import FormFilter from "./FormFilter";
-import List from "./List";
+import ListPerson from "./ListPerson";
+import Footer from "./Footer";
 import "../styles/App.scss";
 
-import CDetailBis from './CDetailBis';
+import CDetailBis from "./CDetailBis";
 
 //prueba mensaje de error aqui
-import ErrorMsg from './ErrorMsg';
+import ErrorMsg from "./ErrorMsg";
 import ResetBtn from "./resetBtn";
 
 const App = () => {
-  //estado inicial del array, OR se llena con lo guardado  OR comienza vacío 
+  //estado inicial del array, OR se llena con lo guardado  OR comienza vacío
   const [personajes, setPersonajes] = useState(ls.get("personajes") || []);
 
   //para filtrar dspues crear constant   y guardar en el ls tmb
-  const [filterNamePerson, setFilterNamePerson] = useState (ls.get ('filterNamePerson', ''));
-  //no muy segura de usarlo o no xa filterperson  
+  const [filterNamePerson, setFilterNamePerson] = useState(
+    ls.get("filterNamePerson", "")
+  );
 
-
-  //PARA FILTRAR ESPECIES 
+  //FILTRAR ESPECIES
   // const [filterSpeciePerson, setFilterSpeciePerson] = useState (ls.get ('filterSpeciePerson', '') )
 
-  
   //effects
   useEffect(() => {
-      getDataFromApi().then((personajesData) => {
-        setPersonajes(personajesData);
-      });
+    getDataFromApi().then((personajesData) => {
+      setPersonajes(personajesData);
+    });
   }, []);
 
   useEffect(() => {
     ls.set("personajes", personajes);
   }, [personajes]);
 
-// filtros de Handle  name 
-const handleFilter = (personajes) => {
-  if (personajes.key === "name") {
-    setFilterNamePerson(personajes.value);
-  }
-};  //aqui iria un else para las especies?
+  // filtros de Handle  name
+  const handleFilter = (personajes) => {
+    if (personajes.key === "name") {
+      setFilterNamePerson(personajes.value);
+    }
+  }; //aqui iria un else para las especies?
 
+  // render filter
+  const filteredPersonajes = personajes.filter((pj) => {
+    return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+  });
 
- // render filter
- const filteredPersonajes = personajes.filter((pj) => {
-  return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
-});
+  //Nueva funcion para usar ruta para  ver tarjetita por tarjetita
+  const renderCardDetail = (props) => {
+    const routeCardId = parseInt(props.match.params.personajeId);
+    const foundCardPerson = personajes.find( 
+      (personaje) => personaje.id === routeCardId
+    );
 
-// CREAR UNA RUTA PARA EL CDETAILS   y ver tarjetita por tarjetita
- const renderCDetailBis = (propsId) => {
-   const waytoCDetailBis= parseInt(propsId.match.params.personajeId) ;
-   const foundCardPerson = personajes.find(
-     (personaje) => personaje.id === waytoCDetailBis
-     );
-   if (foundCardPerson) {
-     return <CDetailBis  pj= {foundCardPerson}/>
-   }else {
-    return <ErrorMsg/>;
-  } 
+    if (foundCardPerson !==undefined ) {
+      return <CDetailBis personaje={foundCardPerson} />;
+    } else {
+      return <p> Prueba otra vez</p>;
+    }
+  };
 
- }
-  
- // Reset btn
- const handleReset = () => {
-  //Vuelve al estado filternamePerson Vacío
-  setFilterNamePerson("");
+  // Reset btn
+  const handleReset = () => {
+    //Vuelve al estado filternamePerson Vacío
+    setFilterNamePerson("");
+  };
 
-};
   return (
-
     //AQUI empezar con switch path y cosas raras
     <>
-       <Header> </Header>
-      <Switch> 
-      <Route exact path="/">
-      <main>
-        <FormFilter
-        filterName={filterNamePerson} 
-        handleFilter={handleFilter}
-  //meter máss filtros  
-        > 
-        </FormFilter>
+      <Header> </Header>
+      <Switch>
+        <Route exact path="/">
+          <main>
+            <FormFilter
+              filterName={filterNamePerson}
+              handleFilter={handleFilter}
+              //meter más filtros
+            ></FormFilter>
 
+            <ResetBtn resetBtn={handleReset}></ResetBtn>
 
-        <ResetBtn
-        resetBtn={handleReset}
-        > 
-        </ResetBtn>
+            <ListPerson personajes={filteredPersonajes} />
+          </main>
+        </Route>
 
-        <List 
-        personajes={filteredPersonajes}
-         />
-
-         
-      </main>
-      </Route>
-
-      <Route 
-      path="/personaje/: personajeId "
-      render= {renderCDetailBis}
-      />
+        <Route path="/cardPerson/: personajeId " render={renderCardDetail} />
       </Switch>
 
       <nav>
-      <MoreInfo> </MoreInfo>
+        <MoreInfo> </MoreInfo>
       </nav>
-  
+
       {/* <Route>
       index.js:1 Warning: React does not recognize the `computedMatch` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `computedmatch` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
     at nav
@@ -121,13 +107,8 @@ const handleFilter = (personajes) => {
     at HashRouter (http://localhost:3000/static/js/vendors~main.chunk.js:33731:35)
             <ErrorMsg  />
           </Route> */}
-     
 
-      <footer
-      className="footer"> 
-    
-      Marina Benítez Sánchez
-      </footer>
+      <Footer> </Footer>
     </>
   );
 };

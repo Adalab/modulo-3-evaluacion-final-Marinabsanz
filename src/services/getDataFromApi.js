@@ -16,6 +16,8 @@ const getDataFromApi = () => {
           episode: info.episode.length,
         };
       });
+
+      console.table (eachPersonData)
      
       return eachPersonData
     });

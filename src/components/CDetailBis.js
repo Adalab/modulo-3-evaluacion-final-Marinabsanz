@@ -2,17 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CDetailBis= (props) => {
-    const { name, species, gender, status, image , origin, id} = props.personajes;
+    const { name, species, gender, status, image , origin, episode} = props.personajes;
 
-    <li key = {id} > </li>
+    <li key = {props.personajes.id} > </li>
 return(
-<div className= 'cardPerson-container'>
-<article>
-<Link to= "/" className= 'linkclassReturn'>
-     Volver
-</Link>
-<h2> Detalle del personaje </h2>
-<h4> {name} </h4>
+<>
+     <div className= 'cardPerson-container2'>
+     <article>
+     <h2> {name} </h2>
       <img className="img"
        src={image} 
        alt={`foto de ${image}`}
@@ -20,13 +17,18 @@ return(
       <p> {species}</p>
       <p> {gender}</p>
       <p>{origin}</p>
+      <p>{status}</p>
+      <p>{episode}</p>
 
 </article>
 </div>
 
+<Link to= "/" className= 'linkclassReturn'>
+     Volver
+</Link>
+</> 
+
 )
-
 }
-
 
 export default CDetailBis;

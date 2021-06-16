@@ -78,14 +78,25 @@ a:active {
     align-items: center;
     align-items: center;
     display: flex;
-    
 
 }
-
-
 
 .img{
     width: 100px;
     height: 100px;
+
+}
+
+
+.cardPerson-container2 {
+    width: 400px;
+    height: 600px;
+   background-color: rgb(15, 88, 197);
+   border: solid 1px rgb(253, 235, 235);
+   margin-bottom: 10px;
+   justify-content: center;
+   align-items: center;
+   align-items: center;
+   display: flex;
 
 }
