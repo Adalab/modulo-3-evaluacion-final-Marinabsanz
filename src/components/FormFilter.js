@@ -4,6 +4,10 @@ import List from './List';
 
  const Form= (props) => {
 
+const handleChange = (event) =>{
+  console.log(event.target.value)
+//  props.handleFilter (event.target.value);
+}; 
 
 const submitPj = (e) => {
   e.preventDefault();
@@ -22,8 +26,10 @@ const submitPj = (e) => {
             name="nombre"
             className=""
             type="text"
+            id= ''
             placeholder="Busca a tu personaje"
-            // onChange= {handleChange}
+            onChange= {handleChange}
+            // value= {props.filterName}
 
           />
         </div>

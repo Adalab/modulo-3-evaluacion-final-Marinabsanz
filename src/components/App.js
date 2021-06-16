@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Form from "./Form";
+import CardPerson from "./CardPerson";
+import CardPersonDetail from "./CardPersonDetail";
+import FormFilter from "./FormFilter";
 import List from "./List";
 import "../styles/App.scss";
 import logo from "../images/rickandmorty-logo.png";
-// import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import getDataFromApi from "../services/getDataFromApi";
 import ls from "../services/localStoraje";
 
@@ -38,7 +40,7 @@ const App = () => {
         </h1>
       </header>
       <main>
-        <Form> </Form>
+        <FormFilter> </FormFilter>
         <List personajes={personajes} />
       </main>
       <footer className="footer">Marina Benítez Sánchez</footer>
