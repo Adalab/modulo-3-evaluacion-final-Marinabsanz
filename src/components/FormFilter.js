@@ -29,20 +29,16 @@ const FormFilter = (props) => {
               onChange={handleChange}
             />
           </div>
-          <div className="">
+          {/* <div className="">
             <select className="formControl" name="especie">
               <option value=""> Selecciona la especie</option>
             </select>
-          </div>
+          </div> */}
         </div>
 
-        <div className="">
-          <input type="submit" className="classBtn" value="Buscar personaje" />
-        </div>
+       
       </form>
-      <fieldset className="claim">
-        ¡Aquí encontrarás más info de tus personajes favoritos!
-      </fieldset>
+     
       <div>
         <h4> Tus resultados</h4>
       </div>

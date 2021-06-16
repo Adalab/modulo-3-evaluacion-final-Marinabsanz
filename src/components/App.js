@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import FormFilter from "./FormFilter";
-
-
-import List from "./List";
-import "../styles/App.scss";
-import logo from "../images/rickandmorty-logo.png";
-
 
 import { Route, Switch } from "react-router-dom";
 import getDataFromApi from "../services/getDataFromApi";
 import ls from "../services/localStorage";
 
+////Components///
+
+import Header from './Header';
+import MoreInfo from './MoreInfo';
+
+import FormFilter from "./FormFilter";
+import List from "./List";
+import "../styles/App.scss";
+
+
+
+
 //prueba mensaje de error aqui
 import ErrorMsg from './ErrorMsg';
+import ResetBtn from "./resetBtn";
 
 const App = () => {
   /////////ESTADO
@@ -57,23 +63,25 @@ const handleFilter = (personajes) => {
 
 
     <>
-      <header className="">
-       
-        <h1>
-          <img src={logo} alt="Rick and Morty logo" className="logo" />
-        </h1>
-      </header>
+       <Header> </Header>
       <Switch> 
       <Route exact path="/">
       <main>
         <FormFilter
         filterName={filterNamePerson} handleFilter={handleFilter}> </FormFilter>
+        <ResetBtn> </ResetBtn>
         <List personajes={filteredPersonajes} />
       </main>
       </Route>
-      <Route path="./CardPersonDetail/ " />
+      <Route path="./CDetailBis/ " />
       </Switch>
 
+
+      <Switch> 
+      <nav>
+      <MoreInfo> </MoreInfo>
+      </nav>
+      </Switch>
       <footer
       className="footer"
       Marina Benítez Sánchez>
