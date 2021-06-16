@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import CardPerson from "./CardPerson";
-import CardPersonDetail from "./CardPersonDetail";
 import Form from "./Form";
 import List from "./List";
 import "../styles/App.scss";

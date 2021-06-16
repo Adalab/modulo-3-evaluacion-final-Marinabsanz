@@ -5,15 +5,14 @@ const List = (props) => {
 
   const pjElements = props.personajes.map (personajes => {
    return (
-   
-      <CardPerson personajes= {personajes} />
-    
+      
+      <CardPerson personajes= {personajes} />  
    );
   });
 
    return (
 <section className=''>
-  <ul className='' > {pjElements}</ul>
+  <ul className='listPersons' > {pjElements}</ul>
 </section>
 
    );

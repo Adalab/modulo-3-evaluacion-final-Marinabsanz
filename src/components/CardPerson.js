@@ -5,7 +5,7 @@ const CardPerson = (props) => {
 
   <li key = {id} className= ''> </li>
 
-  
+
   return (
     <article>
       <img className="img" src={image} alt={`foto de ${image}`} />

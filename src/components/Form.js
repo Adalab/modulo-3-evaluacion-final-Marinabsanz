@@ -15,9 +15,7 @@ const submitPj = (e) => {
       <form className=""
       onSubmit= {submitPj}
       >
-      <fieldset className="">
-        <legend> Busca a tu personaje</legend>
-      </fieldset>
+     
       <div className="">
         <div className="">
           <input
@@ -36,7 +34,6 @@ const submitPj = (e) => {
         </div>
       </div>
 
-
       <div className= ''>
         <input
         type= 'submit'
@@ -46,7 +43,9 @@ const submitPj = (e) => {
           />
           </div>
           </form>
-
+          <fieldset className="claim">
+     ¡Aquí encontrarás más info de tus personajes favoritos!
+      </fieldset>
    <div>  
      <h4> Tus resultados</h4>
    
