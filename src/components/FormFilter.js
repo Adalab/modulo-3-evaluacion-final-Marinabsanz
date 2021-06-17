@@ -56,7 +56,7 @@ const FormFilter = (props) => {
         <option value="">Todos</option>
         <option value="female">Mujer</option>
         <option value="male">Hombre</option>
-        <option value="no-binary">Unknow</option>
+        <option value="unknow">Unknow</option>
       </select>
                  
 

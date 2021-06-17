@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CardDetail= (props) => {
-    const { name, species, gender, status, image , origin, episode} = props.personajes;
+    const { name, species, gender, status, image , origin, episode} = props.personaje;
 
     
 return(
