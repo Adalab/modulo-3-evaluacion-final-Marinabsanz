@@ -11,7 +11,7 @@ import ListPerson from "./ListPerson";
 import Footer from "./Footer";
 import CardDetail from "./CardDetail";
 import ResetBtn from "./resetBtn";
-
+import NotPageFound from './NotPageFound'
 import "../styles/App.scss";
 
 const App = () => {
@@ -114,8 +114,12 @@ const App = () => {
         </Route>
 
         <Route path="/cardPerson/:personajeId" render={renderCardDetail} />
+  
+      <Route>
+          <NotPageFound />
+        </Route>
       </Switch>
-
+     
       <nav>
         <MoreInfo> </MoreInfo>
       </nav>
