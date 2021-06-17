@@ -11,7 +11,7 @@ import ListPerson from "./ListPerson";
 import Footer from "./Footer";
 import CardDetail from "./CardDetail";
 import ResetBtn from "./resetBtn";
-import NotPageFound from './NotPageFound'
+import NotPageFound from "./NotPageFound";
 import "../styles/App.scss";
 
 const App = () => {
@@ -24,14 +24,14 @@ const App = () => {
   );
 
   const [filterGender, setFilterGender] = useState(ls.get("filterGender", ""));
-  
+
   //FILTRAR ESPECIES
   // const [filterSpeciePerson, setFilterSpeciePerson] = useState (ls.get ('filterSpeciePerson', '') )
 
   //effects
   useEffect(() => {
     getDataFromApi().then((personajesData) => {
-    setPersonajes(personajesData);
+      setPersonajes(personajesData);
     });
   }, []);
 
@@ -52,29 +52,25 @@ const App = () => {
     if (personajes.key === "name") {
       setFilterNamePerson(personajes.value);
       //generos
-    } else if (personajes.key === "gender") 
-    setFilterGender(personajes.value);
+    } else if (personajes.key === "gender") setFilterGender(personajes.value);
   };
 
-
-
   // render filter
-  const filteredPersonajes = personajes.filter((pj) => {
-    return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+  const filteredPersonajes = personajes
+    .filter((pj) => {
+      return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+    })
+    .filter((pj) => {
+      //vacío para que funcione en 'todos'
+      if (filterGender === "") {
+        return true;
+      } else {
+        return pj.gender === filterGender;
+      }
+    });
 
-  })
-  .filter((pj)=>  {
-    //vacío para que funcione en 'todos'
-    if (filterGender === '') {
-      return true;
-    } else {
-      return pj.gender === filterGender; 
-    }
-  });
-  
-
-  //Nueva funcion para usar ruta para  ver tarjetita por tarjetita
-   const renderCardDetail = (cards) => {
+  //Ver detalle tarjeta- función para ruta
+  const renderCardDetail = (cards) => {
     const routeCardId = cards.match.params.personajeId;
     const foundCardPerson = personajes.find(
       (personaje) => personaje.id === parseInt(routeCardId)
@@ -94,7 +90,6 @@ const App = () => {
   };
 
   return (
-
     <>
       <Header> </Header>
       <Switch>
@@ -108,18 +103,20 @@ const App = () => {
 
             <ResetBtn resetBtn={handleReset}></ResetBtn>
 
-            <ListPerson personajes={filteredPersonajes}
-            filterNamePerson= {filterNamePerson} />
+            <ListPerson
+              personajes={filteredPersonajes}
+              filterNamePerson={filterNamePerson}
+            />
           </main>
         </Route>
 
         <Route path="/cardPerson/:personajeId" render={renderCardDetail} />
-  
-      <Route>
+
+        <Route>
           <NotPageFound />
         </Route>
       </Switch>
-     
+
       <nav>
         <MoreInfo> </MoreInfo>
       </nav>

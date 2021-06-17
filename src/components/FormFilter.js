@@ -1,7 +1,6 @@
 import React from "react";
 
-
-//funcion manejadora para ir filtrando 
+//funcion manejadora para ir filtrando
 
 const FormFilter = (props) => {
   const handleChange = (event) => {
@@ -12,7 +11,6 @@ const FormFilter = (props) => {
 
     console.log(event.target.value);
   };
-
 
   const submitPj = (e) => {
     e.preventDefault();
@@ -26,34 +24,31 @@ const FormFilter = (props) => {
             <input
               name="nombre"
               id="name"
-              className="colorfonts"
               type="text"
+              className="colorfonts"
               placeholder="Busca a tu personaje"
               value={props.filterName}
               onChange={handleChange}
             />
 
-
             <div>
-            <label className="" htmlFor="gender">
-        Género:
-      </label>
+              <label className="" htmlFor="gender">
+                Género:
+              </label>
 
-      <select
-        className="classBtn"
-        name="gender"
-        id="gender"
-        key= 'gender'
-        value={props.filterGender}
-        onChange={handleChange}
-      >
-        <option value="">Todos</option>
-        <option value="Female">Mujer</option>
-        <option value="Male">Hombre</option>
-        <option value="unknown">Unknown</option>
-      </select>
-                 
-
+              <select
+                className="classBtn"
+                name="gender"
+                id="gender"
+                key="gender"
+                value={props.filterGender}
+                onChange={handleChange}
+              >
+                <option value="">Todos</option>
+                <option value="Female">Mujer</option>
+                <option value="Male">Hombre</option>
+                <option value="unknown">Unknown</option>
+              </select>
             </div>
           </div>
           {/* <div className="">
@@ -64,12 +59,10 @@ const FormFilter = (props) => {
             </select>
           </div> */}
         </div>
-
-       
       </form>
-     
+
       <div>
-        <h4 className='colorfonts'> Tus resultados</h4>
+        <h4 className="colorfonts"> Tus resultados</h4>
       </div>
     </>
   );

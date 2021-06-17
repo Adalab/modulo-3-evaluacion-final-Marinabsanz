@@ -2,12 +2,12 @@ import React from 'react';
 
 
 
-function NotFound(props) {
+function NotPageFound(props) {
     return (
       <>
       <body className= ''> 
       <div className='colorresults  failclass'> 
-        < h2>  No existe!
+        < h2>  Este personaje (ya) no existe!!
          </h2>
         </div>
 
@@ -15,5 +15,5 @@ function NotFound(props) {
       </>
     );
   }
-  export default NotFound;
+  export default NotPageFound;
   

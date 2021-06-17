@@ -9,20 +9,18 @@ const getDataFromApi = () => {
           name: info.name,
           species: info.species,
           status: info.status,
-          gender:info.gender,
+          gender: info.gender,
           image: info.image,
           origin: info.origin.name,
-          origin2:info.origin.url,
+          origin2: info.origin.url,
           episode: info.episode.length,
         };
       });
+        
+      // console.table(eachPersonData);
 
-      console.table (eachPersonData)
-     
-      return eachPersonData
+      return eachPersonData;
     });
-
- 
 };
 
 export default getDataFromApi;
