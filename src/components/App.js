@@ -9,12 +9,8 @@ import MoreInfo from "./MoreInfo";
 import FormFilter from "./FormFilter";
 import ListPerson from "./ListPerson";
 import Footer from "./Footer";
-import "../styles/App.scss";
-
 import CardDetail from "./CardDetail";
-
-//prueba mensaje de error aqui
-import ErrorMsg from "./ErrorMsg";
+import "../styles/App.scss";
 import ResetBtn from "./resetBtn";
 
 const App = () => {
@@ -27,18 +23,13 @@ const App = () => {
   );
 
   const [filterGender, setFilterGender] = useState(ls.get("filterGender", ""));
-
   //FILTRAR ESPECIES
   // const [filterSpeciePerson, setFilterSpeciePerson] = useState (ls.get ('filterSpeciePerson', '') )
 
   //effects
-  /////////////////////////////////////////////////////////////////////////////////
-  //-- PREGUNTAS   if (users.length === 0) {   +por que no va?
-
   useEffect(() => {
     getDataFromApi().then((personajesData) => {
       setPersonajes(personajesData);
-      //USO D ESORT PARA ORDEN ALFABÉTICO
     });
   }, []);
 
@@ -50,35 +41,27 @@ const App = () => {
     ls.set("filterNamePerson", filterNamePerson);
   }, [filterNamePerson]);
 
-  ///////MEJOR AGRUPAR, No?
+  useEffect(() => {
+    ls.set("filterGender", setFilterGender);
+  }, [filterGender]);
 
-  // useEffect(() => {
-  //   ls.set('personajes', personajes);
-  //   ls.set('filterNamePerson', filterNamePerson);
-  // });
-
-  // filtros de Handle : name, gender ,
+  // filtros de Handle  name, gender
   const handleFilter = (personajes) => {
     if (personajes.key === "name") {
       setFilterNamePerson(personajes.value);
-    }
-  }; //aqui iria un else para las especies?
+      //generos
+    } else if (personajes.key === "gender") setFilterGender(personajes.value);
+  };
+
+
 
   // render filter
-  const filteredPersonajes = personajes
-    .filter((pj) => {
-      return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
-    })
-    .filter((personajes) => {
-      if (filterGender === "") {
-        return true;
-      } else {
-        return personajes.gender === filterGender;
-      }
-    });
+  const filteredPersonajes = personajes.filter((pj) => {
+    return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+  });
 
   //Nueva funcion para usar ruta para  ver tarjetita por tarjetita
-  const renderCardDetail = (cards) => {
+   const renderCardDetail = (cards) => {
     const routeCardId = cards.match.params.personajeId;
     const foundCardPerson = personajes.find(
       (personaje) => personaje.id === parseInt(routeCardId)
@@ -87,7 +70,7 @@ const App = () => {
     if (foundCardPerson) {
       return <CardDetail personaje={foundCardPerson} />;
     } else {
-      return <p> No se ha encontrado ningún personaje</p>;
+      return <p> Prueba otra vez</p>;
     }
   };
 
@@ -98,6 +81,7 @@ const App = () => {
   };
 
   return (
+
     <>
       <Header> </Header>
       <Switch>
@@ -111,18 +95,18 @@ const App = () => {
 
             <ResetBtn resetBtn={handleReset}></ResetBtn>
 
-            <ListPerson personajes={filteredPersonajes} />
+            <ListPerson personajes={filteredPersonajes}
+            filterNamePerson= {filterNamePerson} />
           </main>
         </Route>
 
-        <Route path="/CardPerson/:personajeId" render={renderCardDetail} />
-
-        
+        <Route path="/cardPerson/:personajeId" render={renderCardDetail} />
       </Switch>
 
       <nav>
         <MoreInfo> </MoreInfo>
       </nav>
+
       <Footer> </Footer>
     </>
   );

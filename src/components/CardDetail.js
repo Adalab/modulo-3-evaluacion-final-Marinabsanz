@@ -7,6 +7,7 @@ const CardDetail= (props) => {
     
 return(
 <>
+
      <div className= 'cardPerson-container2'>
      <article>
      <h2> {name} </h2>
@@ -23,7 +24,7 @@ return(
 </article>
 </div>
 
-<Link to= "/" className= 'linkclassReturn'>
+<Link to= "/" className= 'classBtn'>
      Volver
 </Link>
 </> 

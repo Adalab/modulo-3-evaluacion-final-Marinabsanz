@@ -4,21 +4,12 @@ const FormFilter = (props) => {
   const handleChange = (event) => {
     props.handleFilter({
       value: event.target.value,
-      key: "name",
+      key: event.target.id,
     });
 
     console.log(event.target.value);
   };
 
-///////////////////////// no lo puedo agrupar??????????
-// const FilterByGender = props => {
-//   const handleChange = ev => {
-//     props.handleFilter({
-//       value: ev.target.value,
-//       key: 'gender'
-//     });
-
-//////////////////////
 
   const submitPj = (e) => {
     e.preventDefault();
@@ -26,13 +17,13 @@ const FormFilter = (props) => {
 
   return (
     <>
-      <form className="" onSubmit={submitPj}>
+      <form className="colorfonts" onSubmit={submitPj}>
         <div className="">
           <div className="">
             <input
               name="nombre"
               id="name"
-              className=""
+              className="colorfonts"
               type="text"
               placeholder="Busca a tu personaje"
               value={props.filterName}
@@ -46,7 +37,7 @@ const FormFilter = (props) => {
       </label>
 
       <select
-        className=""
+        className="classBtn"
         name="gender"
         id="gender"
         key= 'gender'
@@ -60,12 +51,13 @@ const FormFilter = (props) => {
       </select>
                  
 
-
             </div>
           </div>
           {/* <div className="">
             <select className="formControl" name="especie" id='especie'>
               <option value=""> Selecciona la especie</option>
+                <option value=""> Selecciona la especie</option>
+                <option value=""> Selecciona la especie</option>
             </select>
           </div> */}
         </div>
@@ -74,7 +66,7 @@ const FormFilter = (props) => {
       </form>
      
       <div>
-        <h4> Tus resultados</h4>
+        <h4 className='colorfonts'> Tus resultados</h4>
       </div>
     </>
   );
