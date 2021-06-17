@@ -24,6 +24,7 @@ const App = () => {
   );
 
   const [filterGender, setFilterGender] = useState(ls.get("filterGender", ""));
+  
   //FILTRAR ESPECIES
   // const [filterSpeciePerson, setFilterSpeciePerson] = useState (ls.get ('filterSpeciePerson', '') )
 
@@ -60,8 +61,17 @@ const App = () => {
   // render filter
   const filteredPersonajes = personajes.filter((pj) => {
     return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
-    
+
+  })
+  .filter((pj)=>  {
+    //vacío para que funcione en 'todos'
+    if (filterGender === '') {
+      return true;
+    } else {
+      return pj.gender === filterGender; 
+    }
   });
+  
 
   //Nueva funcion para usar ruta para  ver tarjetita por tarjetita
    const renderCardDetail = (cards) => {

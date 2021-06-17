@@ -6,7 +6,9 @@ const Footer = () => {
 return (
  
     <footer className="footer">
-    <p className="footer__link">Marina Benítez Sánchez</p>
+   
+   <a href= 'https://www.linkedin.com/in/marina-ben%C3%ADtez-s%C3%A1nchez-0214a059/'>
+            Marina BSánchez </a>
     </footer>
 
 )

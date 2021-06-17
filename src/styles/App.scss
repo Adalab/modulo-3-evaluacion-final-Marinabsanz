@@ -2,12 +2,12 @@
 
 @import 'layout/variables';
 @import 'layout/carddetail..scss';
-@import 'layout/errorpage.scss';
+
 
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: $font-family;
     background-image: url('../images/background.png');
     padding-bottom: 5rem;
     text-decoration: none;
@@ -40,8 +40,6 @@ a:active {
     margin-top: 15px;
  
 }
-
-
 
 
 .listPersons{
@@ -103,3 +101,23 @@ a:active {
     font-size: 2rem;
     margin-bottom: 15px;
 }
+
+
+.colorresults  {
+    color: rgb(108, 205, 212);
+    font-family: $font-family;
+    font-size: 1rem;
+
+}
+
+  .failcolorfont{
+  color: #30f5ba;
+  font-size: 2rem;
+  
+  }
+  
+  .footer{
+    
+    color: #e7f3f3;
+    font: 1rem;
+  }

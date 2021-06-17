@@ -7,7 +7,9 @@ const CardDetail= (props) => {
     
 return(
 <>
-
+<Link to= "/" className= 'classBtn'>
+     Volver
+</Link>
      <div className= 'cardPerson-container2'>
      <article>
      <h2> {name} </h2>
@@ -15,18 +17,16 @@ return(
        src={image} 
        alt={`foto de ${image}`}
         />
-      <p> {species}</p>
-      <p> {gender}</p>
-      <p>{origin}</p>
-      <p>{status}</p>
-      <p>{episode}</p>
+      <p> Especie: {species}</p>
+      <p> Género:{gender}</p>
+      <p>Planeta:{origin}</p>
+      <p>Estado :{status}</p>
+      <p>Episodio: {episode}</p>
 
 </article>
 </div>
 
-<Link to= "/" className= 'classBtn'>
-     Volver
-</Link>
+
 </> 
 
 )
