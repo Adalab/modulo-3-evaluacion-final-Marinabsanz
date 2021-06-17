@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CDetailBis= (props) => {
+const CardDetail= (props) => {
     const { name, species, gender, status, image , origin, episode} = props.personajes;
 
-    <li key = {props.personajes.id} > </li>
+    
 return(
 <>
      <div className= 'cardPerson-container2'>
@@ -31,4 +31,4 @@ return(
 )
 }
 
-export default CDetailBis;
+export default CardDetail;

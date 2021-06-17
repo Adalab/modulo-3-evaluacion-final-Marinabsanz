@@ -6,6 +6,7 @@ const ListPerson = (props) => {
     return (
       <li key={personaje.id} className="">
         <CardPerson personajes={personaje} />
+
       </li>
     );
   });

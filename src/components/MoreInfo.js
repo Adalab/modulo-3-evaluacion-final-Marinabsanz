@@ -7,9 +7,11 @@ const MoreInfo= () => {
     return(
     
         <fieldset className="claim">
-        ¡Aquí encontrarás más info de tus personajes favoritos!
+        
+        <a href= 'https://www.adultswim.com/videos/rick-and-morty'>
+            Visita la página oficial para más info!</a>
       </fieldset>
-//Meter web , pag oficial, facebook o algo asi
+
 
     )
     

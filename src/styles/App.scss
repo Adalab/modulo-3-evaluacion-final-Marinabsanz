@@ -1,8 +1,14 @@
+
+
+@import 'layout/variables';
+@import 'layout/carddetail..scss';
+@import 'layout/errorpage.scss';
+
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-image: linear-gradient(-225deg, #74abe9 0%, #65696d 52%, #4c77ec 100%);
+    background-image: $colorbackground;
     min-height: 100vh;
     padding-bottom: 5rem;
     text-decoration: none;
@@ -35,11 +41,12 @@ a:active {
 
 .claim {
 
-    background-color: rgb(244, 241, 247);
-    border: solid 2px;
+    background-color: $colorbutton;
+    border: solid 2px white;
     font-size: 1rem;
     width: fit-content;
     margin-top: 15px;
+ 
 }
 
 
@@ -61,9 +68,9 @@ a:active {
    
 }
 .classBtn{
-     background-color: rgb(20, 248, 96);
+     background-color: $colorbutton;
     border: solid 2px black;
-    color: royalblue;
+    color: #f4f5f5;;
 }
 
 
@@ -71,8 +78,8 @@ a:active {
 .cardPerson-container {
      width: 200px;
      height: 300px;
-    background-color: rgb(86, 149, 245);
-    border: solid 1px white;
+    background-color: #02e4e4;
+    border: solid 1px rgb(8, 252, 48);
     margin-bottom: 10px;
     justify-content: center;
     align-items: center;
@@ -88,15 +95,3 @@ a:active {
 }
 
 
-.cardPerson-container2 {
-    width: 400px;
-    height: 600px;
-   background-color: rgb(15, 88, 197);
-   border: solid 1px rgb(253, 235, 235);
-   margin-bottom: 10px;
-   justify-content: center;
-   align-items: center;
-   align-items: center;
-   display: flex;
-
-}

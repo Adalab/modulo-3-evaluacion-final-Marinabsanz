@@ -11,7 +11,7 @@ import ListPerson from "./ListPerson";
 import Footer from "./Footer";
 import "../styles/App.scss";
 
-import CDetailBis from "./CDetailBis";
+import CardDetail from "./CardDetail";
 
 //prueba mensaje de error aqui
 import ErrorMsg from "./ErrorMsg";
@@ -26,19 +26,43 @@ const App = () => {
     ls.get("filterNamePerson", "")
   );
 
+  const [filterGender, setFilterGender] = useState
+   (ls.get('filterGender', ''));
+
   //FILTRAR ESPECIES
   // const [filterSpeciePerson, setFilterSpeciePerson] = useState (ls.get ('filterSpeciePerson', '') )
 
   //effects
+/////////////////////////////////////////////////////////////////////////////////
+//-- PREGUNTAS   if (users.length === 0) {   +por que no va?
+
   useEffect(() => {
+
     getDataFromApi().then((personajesData) => {
-      setPersonajes(personajesData);
-    });
+      setPersonajes(personajesData);  
+    }); 
   }, []);
 
   useEffect(() => {
     ls.set("personajes", personajes);
   }, [personajes]);
+
+
+  useEffect(() => {
+    ls.set("filterNamePerson", filterNamePerson);
+  }, [filterNamePerson]);
+
+  ///////MEJOR AGRUPAR, No?
+
+  // useEffect(() => {
+  //   ls.set('personajes', personajes);
+  //   ls.set('filterNamePerson', filterNamePerson);
+  // });
+
+
+
+
+
 
   // filtros de Handle  name
   const handleFilter = (personajes) => {
@@ -50,17 +74,27 @@ const App = () => {
   // render filter
   const filteredPersonajes = personajes.filter((pj) => {
     return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
-  });
+
+
+  })
+ .filter (personajes => {
+   if (filterGender === '') {
+     return true;
+   } else {
+     return personajes.gender === filterGender;
+   }
+
+ })
 
   //Nueva funcion para usar ruta para  ver tarjetita por tarjetita
-  const renderCardDetail = (props) => {
-    const routeCardId = parseInt(props.match.params.personajeId);
-    const foundCardPerson = personajes.find( 
-      (personaje) => personaje.id === routeCardId
-    );
+  const renderCardDetail = tarjetitas => {
+    const routeCardId = tarjetitas.match.params.personajeId;
+    const foundCardPerson = personajes.find( personaje => 
+     personaje.id === parseInt(routeCardId)
+    )
 
-    if (foundCardPerson !==undefined ) {
-      return <CDetailBis personaje={foundCardPerson} />;
+    if (foundCardPerson) {
+      return <CardDetail personaje={foundCardPerson} />;
     } else {
       return <p> Prueba otra vez</p>;
     }
@@ -91,10 +125,11 @@ const App = () => {
           </main>
         </Route>
 
-        <Route path="/cardPerson/: personajeId " render={renderCardDetail} />
+        <Route path="/CardPerson/:personajeId " render={renderCardDetail} />
       </Switch>
 
       <nav>
+        
         <MoreInfo> </MoreInfo>
       </nav>
 
