@@ -9,7 +9,7 @@ import { HashRouter } from "react-router-dom";
 import App from './components/App';
 import './styles/index.scss';
 
-ReactDOM.render(
+ ReactDOM.render(
   
   <React.StrictMode>
    <HashRouter>

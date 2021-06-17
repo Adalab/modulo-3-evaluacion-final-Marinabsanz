@@ -10,8 +10,9 @@ import FormFilter from "./FormFilter";
 import ListPerson from "./ListPerson";
 import Footer from "./Footer";
 import CardDetail from "./CardDetail";
-import "../styles/App.scss";
 import ResetBtn from "./resetBtn";
+
+import "../styles/App.scss";
 
 const App = () => {
   //estado inicial del array, OR se llena con lo guardado  OR comienza vacío
@@ -29,7 +30,7 @@ const App = () => {
   //effects
   useEffect(() => {
     getDataFromApi().then((personajesData) => {
-      setPersonajes(personajesData);
+    setPersonajes(personajesData);
     });
   }, []);
 
@@ -42,7 +43,7 @@ const App = () => {
   }, [filterNamePerson]);
 
   useEffect(() => {
-    ls.set("filterGender", setFilterGender);
+    ls.set("filterGender", filterGender);
   }, [filterGender]);
 
   // filtros de Handle  name, gender
@@ -50,7 +51,8 @@ const App = () => {
     if (personajes.key === "name") {
       setFilterNamePerson(personajes.value);
       //generos
-    } else if (personajes.key === "gender") setFilterGender(personajes.value);
+    } else if (personajes.key === "gender") 
+    setFilterGender(personajes.value);
   };
 
 
@@ -58,6 +60,7 @@ const App = () => {
   // render filter
   const filteredPersonajes = personajes.filter((pj) => {
     return pj.name.toLowerCase().includes(filterNamePerson.toLowerCase());
+    
   });
 
   //Nueva funcion para usar ruta para  ver tarjetita por tarjetita

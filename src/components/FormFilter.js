@@ -1,5 +1,8 @@
 import React from "react";
 
+
+//funcion manejadora para ir filtrando 
+
 const FormFilter = (props) => {
   const handleChange = (event) => {
     props.handleFilter({
@@ -45,9 +48,9 @@ const FormFilter = (props) => {
         onChange={handleChange}
       >
         <option value="">Todos</option>
-        <option value="female">Mujer</option>
-        <option value="male">Hombre</option>
-        <option value="unknow">Unknow</option>
+        <option value="Female">Mujer</option>
+        <option value="Male">Hombre</option>
+        <option value="unknown">Unknown</option>
       </select>
                  
 
