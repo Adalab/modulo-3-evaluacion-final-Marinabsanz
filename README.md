@@ -17,8 +17,7 @@ Mayo 2021
 
 Puedes encontrar la versión beta en el siguiente enlace:
 
-http://beta.adalab.es/modulo-3-evaluacion-final-Marinabsanz/#/
-
+http://marinabsanz.github.io/modulo-3-evaluacion-final-Marinabsanz/
 
 Si quieres, puedes descargar el proyecto:
 
