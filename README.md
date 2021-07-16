@@ -17,7 +17,7 @@ Mayo 2021
 
 Puedes encontrar la versión beta en el siguiente enlace:
 
-http://marinabsanz.github.io/modulo-3-evaluacion-final-Marinabsanz/
+https://github.com/Marinabsanz/REACT-Finder-RickandMorty--REACT-Marinabsanz.git
 
 Si quieres, puedes descargar el proyecto:
 
